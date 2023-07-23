@@ -1,0 +1,35 @@
+﻿@model Tasks
+
+<h1>Delete task</h1>
+
+<hr />
+
+<div class="row">
+    <dl class="col-sm-2">
+        Title
+    </dl>
+    <dl class="col-sm-10">
+        @Model.Title
+    </dl>
+    <dl class="col-sm-2">
+        Description
+    </dl>
+    <dl class="col-sm-10">
+        @Model.Description
+    </dl>
+    <dl class="col-sm-2">
+        IsCompleted
+    </dl>
+    <dl class="col-sm-10">
+        @Model.IsCompleted
+    </dl>
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <input type="submit" value="Delete" class="btn btn-danger" />
+</form>
+
+<div>
+    <a asp-action="Index" asp-route-id="@Model.Id">Back to tasks</a>
+</div>

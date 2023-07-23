@@ -1,0 +1,41 @@
+﻿@model List<Tasks>
+
+<h1>Tasks</h1>
+
+<a class="btn btn-primary" asp-action="Create" asp-route-id=@ViewBag.TodoId>Dodaj novi zadatak</a>
+@if(Model == null)
+{
+    <h2>Nema nijednog zadatka !</h2>
+} else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Zadatak</th>
+                <th>Opis zadatka</th>
+                <th>Dovršen</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Title
+                    </td>
+                    <td>
+                        @item.Description
+                    </td>
+                    <td>
+                        @item.IsCompleted
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id=@item.Id>Details</a> |
+                        <a asp-action="Edit" asp-route-id=@item.Id>Edit</a> |
+                        <a asp-action="Delete" asp-route-id=@item.Id>Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

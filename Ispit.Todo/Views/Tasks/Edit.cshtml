@@ -1,0 +1,48 @@
+﻿@model Tasks
+@if (Model.IsCompleted == false)
+{
+    <h1>Edit task</h1>
+
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <input type="hidden" asp-for="Id" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <input type="hidden" asp-for="Id" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-1">
+                    <label asp-for="IsCompleted" class="control-label">Označi kao odrađeno</label>
+                    <input type="checkbox" asp-for="IsCompleted" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to product list</a>
+    </div>
+}
+
+@if(Model.IsCompleted == true)
+{
+    <form asp-action="Delete">
+        <input type="hidden" name="id" value="@Model.Id" />
+        <h3>Do you want to remove the completed task?</h3>
+        <input type="submit" value="Yes" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-success">No</a>
+    </form>
+}
+
